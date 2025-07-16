@@ -9,7 +9,7 @@ public class Main {
         //1
         Product product = new Product("Samsung S25 Ultra", LocalDate.now(),
                 "Samsung Corp.", "Korea", 5599.0, true);
-        //product.printInfo();
+        product.printInfo();
 
         //2
         Product[] productsArray = new Product[5];
