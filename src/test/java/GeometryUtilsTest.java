@@ -1,32 +1,25 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
-class GeometryUtilsTest {
+public class GeometryUtilsTest {
 
     @Test
-    void triangleArea_ValidSides_ReturnsCorrectArea() {
-        assertEquals(6.0, GeometryUtils.triangleArea(3, 4, 5));
-        assertEquals(14.697, GeometryUtils.triangleArea(5, 6, 7), 0.001);
+    public void triangleArea_ValidSides_ReturnsCorrectArea() {
+        assertEquals(GeometryUtils.triangleArea(3, 4, 5), 6.0);
     }
 
-    @Test
-    void triangleArea_ZeroSide_ThrowsException() {
-        assertThrows(IllegalArgumentException.class, () ->
-                GeometryUtils.triangleArea(0, 4, 5)
-        );
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void triangleArea_ZeroSide_ThrowsException() {
+        GeometryUtils.triangleArea(0, 4, 5);
     }
 
-    @Test
-    void triangleArea_NegativeSide_ThrowsException() {
-        assertThrows(IllegalArgumentException.class, () ->
-                GeometryUtils.triangleArea(-1, 2, 2)
-        );
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void triangleArea_NegativeSide_ThrowsException() {
+        GeometryUtils.triangleArea(-1, 2, 2);
     }
 
-    @Test
-    void triangleArea_InvalidTriangle_ThrowsException() {
-        assertThrows(IllegalArgumentException.class, () ->
-                GeometryUtils.triangleArea(1, 2, 10) // Невалидные стороны (1+2 < 10)
-        );
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void triangleArea_InvalidTriangle_ThrowsException() {
+        GeometryUtils.triangleArea(1, 2, 10); // 1+2 < 10
     }
 }

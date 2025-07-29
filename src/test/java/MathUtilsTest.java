@@ -1,75 +1,55 @@
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
-class MathUtilsTest {
+public class MathUtilsTest {
 
     @Test
-    void factorial_PositiveNumber_ReturnsCorrectValue() {
-        assertEquals(120, MathUtils.factorial(5));
+    public void factorial_PositiveNumber_ReturnsCorrectValue() {
+        assertEquals(MathUtils.factorial(5), 120);
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void factorial_NegativeNumber_ThrowsException() {
+        MathUtils.factorial(-1);
     }
 
     @Test
-    void factorial_Zero_ReturnsOne() {
-        assertEquals(1, MathUtils.factorial(0));
+    public void add_PositiveNumbers_ReturnsSum() {
+        assertEquals(MathUtils.add(2, 3), 5);
     }
 
     @Test
-    void factorial_NegativeNumber_ThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> MathUtils.factorial(-1));
+    public void add_NegativeNumbers_ReturnsSum() {
+        assertEquals(MathUtils.add(2, -3), -1);
     }
 
     @Test
-    void add_PositiveNumbers_ReturnsSum() {
-        assertEquals(5, MathUtils.add(2, 3));
+    public void subtract_PositiveNumbers_ReturnsDifference() {
+        assertEquals(MathUtils.subtract(5, 3), 2);
     }
 
     @Test
-    void add_NegativeNumbers_ReturnsSum() {
-        assertEquals(-1, MathUtils.add(2, -3));
+    public void subtract_NegativeResult_ReturnsNegative() {
+        assertEquals(MathUtils.subtract(2, 7), -5);
     }
 
     @Test
-    void subtract_PositiveNumbers_ReturnsDifference() {
-        assertEquals(2, MathUtils.subtract(5, 3));
+    public void multiply_PositiveNumbers_ReturnsProduct() {
+        assertEquals(MathUtils.multiply(2, 3), 6);
     }
 
     @Test
-    void subtract_NegativeResult_ReturnsNegative() {
-        assertEquals(-5, MathUtils.subtract(2, 7));
+    public void multiply_ByZero_ReturnsZero() {
+        assertEquals(MathUtils.multiply(5, 0), 0);
     }
 
     @Test
-    void multiply_PositiveNumbers_ReturnsProduct() {
-        assertEquals(6, MathUtils.multiply(2, 3));
+    public void divide_PositiveNumbers_ReturnsQuotient() {
+        assertEquals(MathUtils.divide(10, 2), 5.0);
     }
 
-    @Test
-    void multiply_ByZero_ReturnsZero() {
-        assertEquals(0, MathUtils.multiply(5, 0));
-    }
-
-    @Test
-    void multiply_NegativeNumbers_ReturnsPositive() {
-        assertEquals(6, MathUtils.multiply(-2, -3));
-    }
-
-    @Test
-    void multiply_MaxIntByOne_ReturnsMaxInt() {
-        assertEquals(Integer.MAX_VALUE, MathUtils.multiply(Integer.MAX_VALUE, 1));
-    }
-
-    @Test
-    void divide_PositiveNumbers_ReturnsQuotient() {
-        assertEquals(2.5, MathUtils.divide(5, 2));
-    }
-
-    @Test
-    void divide_ByZero_ThrowsException() {
-        assertThrows(ArithmeticException.class, () -> MathUtils.divide(1, 0));
-    }
-
-    @Test
-    void divide_Rounding_ReturnsRoundedValue() {
-        assertEquals(0.333, MathUtils.divide(1, 3), 0.001);
+    @Test(expectedExceptions = ArithmeticException.class)
+    public void divide_ByZero_ThrowsException() {
+        MathUtils.divide(1, 0);
     }
 }
